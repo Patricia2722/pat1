@@ -1,0 +1,15 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block content %}
+
+       <div class="service">
+           <h2><a href="">{{service.name}}</a></h2>
+           <p>{{client.description}}</p>
+           <p>{{client.duration}}</p>
+           <p>{{client.price}}</p>
+
+       </div>
+       <a href="{% url 'service_update' client.pk %}">+ Edit Service</a>
+       <a href="{% url 'service_delete' client.pk %}">- Delete Service</a>
+
+{% endblock content %}

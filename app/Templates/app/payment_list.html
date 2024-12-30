@@ -1,0 +1,15 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block content %}
+<a href="{% url 'payment_create' %}">+ new payment </a>
+
+<div class="nav right">
+</div>
+    {% for payment in payment %}
+       <div class="payment">
+           <h2><a href="{% url 'paymentt_detail' .pk %}payment">{{payment.method }}</a></h2>
+           <a>{{payment.amount}}</a>
+
+       </div>
+    {% endfor %}
+{% endblock content %}

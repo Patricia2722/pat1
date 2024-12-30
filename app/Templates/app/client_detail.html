@@ -1,0 +1,15 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block content %}
+
+       <div class="client">
+           <h2><a href="">{{client.user}}</a></h2>
+           <p>{{client.user}}</p>
+           <p>{{client.phone}}</p>
+           <p>{{client.address}}</p>
+
+       </div>
+       <a href="{% url 'client_update' client.pk %}">+ Edit Client</a>
+       <a href="{% url 'client_delete' client.pk %}">- Delete Client</a>
+
+{% endblock content %}

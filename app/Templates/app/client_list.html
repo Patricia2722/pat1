@@ -1,0 +1,15 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block content %}
+<a href="{% url 'client_create' %}">+ new client </a>
+
+<div class="nav right">
+</div>
+    {% for client in client %}
+       <div class="client">
+           <h2><a href="{% url 'client_detail' .pk %}client">{{client.user }}</a></h2>
+           <a>{{client.phone}}</a>
+
+       </div>
+    {% endfor %}
+{% endblock content %}

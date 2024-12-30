@@ -1,0 +1,15 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block content %}
+
+       <div class="payment">
+           <h2><a href="">{{payment.appointmnet}}</a></h2>
+           <p>{{payment.amount}}</p>
+           <p>{{payment.method}}</p>
+           <p>{{payment.payment_date}}</p>
+
+       </div>
+       <a href="{% url 'payment_update' payment.pk %}">+ Edit Payment</a>
+       <a href="{% url 'payment_delete' payment.pk %}">- Delete Payment</a>
+
+{% endblock content %}

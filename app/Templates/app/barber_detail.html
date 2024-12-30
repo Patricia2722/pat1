@@ -1,0 +1,15 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block content %}
+
+       <div class="barber">
+           <h2><a href="">{{barber.name}}</a></h2>
+           <p>{{barber.user}}</p>
+           <p>{{barber.specialty}}</p>
+           <p>{{barber.experience_years}}</p>
+
+       </div>
+       <a href="{% url 'barber_update' barber.pk %}">+ Edit Barber</a>
+       <a href="{% url 'barber_delete' barber.pk %}">- Delete Barber</a>
+
+{% endblock content %}

@@ -1,0 +1,15 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block content %}
+<a href="{% url 'service_create' %}">+ New service </a>
+
+<div class="nav right">
+</div>
+    {% for service in service %}
+       <div class="service">
+           <h2><a href="{% url 'service_detail' .pk %}service">{{service.name }}</a></h2>
+           <a>{{service.description}}</a>
+
+       </div>
+    {% endfor %}
+{% endblock content %}

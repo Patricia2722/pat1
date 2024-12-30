@@ -1,0 +1,15 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block content %}
+<a href="{% url 'barber_create' %}">+ new barber</a>
+
+<div class="nav right">
+</div>
+    {% for barber in barber %}
+       <div class="barber">
+           <h2><a href="{% url 'barber_detail' barber.pk %}">{{barber. }}</a></h2>
+           <a>{{barber.name}}</a>
+
+       </div>
+    {% endfor %}
+{% endblock content %}

@@ -2,7 +2,7 @@
 {% load static %}
 {% block content %}
     <h1> New Appointmnet</h1>
-    <form action="{% url 'appointment_create' %}" method="post">
+    <form action="{% url 'appointment_update' appointment.pk %}" method="post">
         {% csrf_token %}
 
         {{form.as_p}}

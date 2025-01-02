@@ -1,15 +1,95 @@
-{% extends 'app/base.html' %}
+{% extends 'app/Admin/Admin.html' %}
 {% load static %}
 {% block content %}
-<a href="{% url 'barber_create' %}">+ new barber</a>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f9;
+        margin: 0;
+        padding: 20px;
+    }
 
-<div class="nav right">
-</div>
-    {% for barber in barber %}
-       <div class="barber">
-           <h2><a href="{% url 'barber_detail' barber.pk %}">{{barber. }}</a></h2>
-           <a>{{barber.name}}</a>
+    a {
+        text-decoration: none;
+        color: #007BFF;
+        font-weight: bold;
+    }
 
-       </div>
-    {% endfor %}
+    a:hover {
+        color: #0056b3;
+    }
+
+    .nav.right {
+        float: right;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+        background-color: #fff;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    th, td {
+        padding: 10px;
+        text-align: left;
+        border: 1px solid #ddd;
+    }
+
+    th {
+        background-color: #007BFF;
+        color: white;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+
+    tr:hover {
+        background-color: #f1f1f1;
+    }
+
+    .add-barber {
+        display: inline-block;
+        margin-bottom: 10px;
+        padding: 10px 20px;
+        background-color: #28a745;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        text-align: center;
+    }
+
+    .add-barber:hover {
+        background-color: #218838;
+    }
+</style>
+
+<a href="{% url 'barber_create' %}" class="add-barber">+ New Barber</a>
+
+<div class="nav right"></div>
+
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for barber in barber %}
+        <tr>
+            <td>{{ barber.pk }}</td>
+            <td>{{ barber.name }}</td>
+            <td>
+                <a href="{% url 'barber_detail' barber.pk %}">View</a>
+                <a href="{% url 'barber_update' barber.pk %}">Update</a>
+                <a href="{% url 'barber_delete' barber.pk %}">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
 {% endblock content %}

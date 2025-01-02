@@ -1,6 +1,26 @@
 {% extends 'app/base.html' %}
 {% load static %}
+
 {% block content %}
-    <h1>This is home page</h1>
+    <style>
+        body {
+            background-image: url("{% static 'images/pat1.png' %}");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 20%;
+        }
+    </style>
+
+    <h1>This is the home page</h1>
 
 {% endblock content %}

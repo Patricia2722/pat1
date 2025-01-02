@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
+from django.utils import timezone
 
 class Barber(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="barber_profile")
@@ -19,7 +20,8 @@ class Barber(models.Model):
 
 
 class Client(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="client_profile")
+    firstname = models.CharField(max_length=20, blank=True, null=True)
+    lastname = models.CharField(max_length=20, blank=True, null=True)
     phone = models.CharField(max_length=15, blank=True, null=True)
     address = models.TextField(blank=True, null=True)
 
@@ -27,7 +29,7 @@ class Client(models.Model):
         return reverse("client_detail", kwargs={"pk": self.pk})
 
     def __str__(self):
-        return f"{self.user.username}"
+        return f"{self.firstname} "  f"{self.lastname}"
 
 class Service(models.Model):
     name = models.CharField(max_length=100)
@@ -47,8 +49,8 @@ class Appointment(models.Model):
     service = models.ForeignKey(Service, on_delete=models.CASCADE, related_name="appointments")
     date = models.DateField()
     time = models.TimeField()
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
+    created_at = models.DateTimeField(default=timezone.now)
+    updated_at = models.DateTimeField(default=timezone.now)
     status = models.CharField(max_length=20, choices=[
         ('scheduled', 'Scheduled'),
         ('completed', 'Completed'),
@@ -71,7 +73,7 @@ class Payment(models.Model):
         ('card', 'Card'),
         ('online', 'Online')
     ], default='card')
-    payment_date = models.DateTimeField(auto_now_add=True)
+    payment_date = models.DateTimeField(default=timezone.now)
 
     def get_absolute_url(self):
         return reverse("payment_detail", kwargs={"pk": self.pk})

@@ -9,7 +9,7 @@
            <p>{{client.price}}</p>
 
        </div>
-       <a href="{% url 'service_update' client.pk %}">+ Edit Service</a>
-       <a href="{% url 'service_delete' client.pk %}">- Delete Service</a>
+       <a href="{% url 'service_update' service.pk %}">+ Edit Service</a>
+       <a href="{% url 'service_delete' service.pk %}">- Delete Service</a>
 
 {% endblock content %}

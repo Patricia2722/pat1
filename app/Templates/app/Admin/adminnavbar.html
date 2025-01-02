@@ -1,0 +1,24 @@
+<nav>
+    <!-- Checkbox for toggling menu -->
+    <input type="checkbox" id="check">
+
+    <!-- Menu icon -->
+    <label for="check" class="checkbtn">
+      <i class="fas fa-bars"></i>
+    </label>
+
+    <!-- Site logo -->
+    <label class="logo">Welcome {{ user.username }}</label>
+
+    <!-- Navigation links -->
+    <ul>
+      <li><a href="{% url 'home' %}">Home</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="{% url 'Barber' %}">Barber</a></li>
+      <li><a href="{% url 'client' %}">Client</a></li>
+        <li><a href="{% url 'payment' %}">Payment</a></li>
+         <li><a href="{% url 'service' %}">Service</a></li>
+
+
+    </ul>
+  </nav>

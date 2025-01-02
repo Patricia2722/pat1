@@ -4,7 +4,7 @@
     <h1> Edit Client</h1>
     <form action="{% url 'client_delete' object.pk %}" method="post">
         {% csrf_token %}
-        <p> Are you sure you want to delete" {{client.user }}"? </p>
+        <p> Are you sure you want to delete" {{client.firstname }}"? </p>
 
         <input type="submit" value="Confirm">
 

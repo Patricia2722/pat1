@@ -1,12 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic import TemplateView, ListView, DetailView
-from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from .models import Barber
-from .models import Client
-from .models import Service
-from .models import Appointment
-from .models import Payment
+from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
+from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib.auth.forms import UserCreationForm
 from django.urls import reverse_lazy
+from .models import Barber, Client, Service, Appointment, Payment
 
 class HomePageView(TemplateView):
     template_name = 'app/home.html'
@@ -18,6 +16,28 @@ class AboutPageView(TemplateView):
 
 class ContactPageView(TemplateView):
     template_name = 'app/contact.html'
+
+# User Registration View
+class UserRegisterView(FormView):
+    template_name = 'app/Login/register.html'
+    form_class = UserCreationForm
+    success_url = reverse_lazy('login')
+
+    def form_valid(self, form):
+        user = form.save()
+        return super().form_valid(form)
+
+# User Login View
+class UserLoginView(LoginView):
+    template_name = 'app/Login/login.html'
+    success_url = reverse_lazy('Barber')
+
+# User Logout View
+class UserLogoutView(LogoutView):
+    template_name = 'app/Login/logout.html'
+
+class AdminView(TemplateView):
+    template_name = 'app/Admin/Admin.html'
 
 
 class BarberListView(ListView):
@@ -64,13 +84,13 @@ class ClientDetailView(DetailView):
 
 class ClientCreateView(CreateView):
     model = Client
-    fields = ['user', 'phone', 'address']
+    fields = ['firstname', 'lastname', 'phone', 'address']
     template_name = 'app/client_create.html'
 
 
 class ClientUpdateView(UpdateView):
     model = Client
-    fields = ['user', 'phone', 'address']
+    fields = ['firstname', 'lastname', 'phone', 'address']
     template_name = 'app/client_update.html'
 
 
@@ -121,12 +141,12 @@ class AppointmentDetailView(DetailView):
 
 class AppointmentCreateView(CreateView):
     model = Appointment
-    fields = ['barber', 'client', 'service', 'date', 'time', 'created_at', 'updated_at', 'status']
+    fields = ['barber', 'client', 'service', 'date', 'time',  'updated_at', 'status']
     template_name = 'app/appointment_create.html'
 
 class AppointmentUpdateView(UpdateView):
     model = Appointment
-    fields = ['barber', 'client', 'service', 'date', 'time', 'created_at', 'updated_at', 'status']
+    fields = ['barber', 'client', 'service', 'date', 'time', 'updated_at', 'status']
     exclude = ['created_at']
     template_name = 'app/appointment_update.html'
 

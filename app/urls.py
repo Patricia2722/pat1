@@ -5,18 +5,25 @@ from .views import (HomePageView, AboutPageView, ContactPageView, BarberListView
                     ClientDeleteView, ServiceListView, ServiceDetailView, ServiceCreateView,
                     ServiceUpdateView, ServiceDeleteView, AppointmentListView, AppointmentDetailView,
                     AppointmentCreateView, AppointmentUpdateView, AppointmentDeleteView, PaymentListView,
-                    PaymentDetailView, PaymentCreateView, PaymentUpdateView, PaymentDeleteView)
+                    PaymentDetailView, PaymentCreateView, PaymentUpdateView, PaymentDeleteView, UserRegisterView,
+                    UserLoginView, UserLogoutView, AdminView)
 
 urlpatterns = [
     path('', HomePageView.as_view(), name='home'),
     path('about/', AboutPageView.as_view(), name='about'),
     path('contact/', ContactPageView.as_view(), name='contact'),
 
+    path('admins/', AdminView.as_view(), name='admins'),
+
     path('barber/', BarberListView.as_view(), name='Barber'),
     path('barber/<int:pk>', BarberDetailView.as_view(), name='barber_detail'),
     path('barber/create', BarberCreateView.as_view(), name='barber_create'),
     path('barber/<int:pk>/edit', BarberUpdateView.as_view(), name='barber_update'),
     path('barber/<int:pk>/delete', BarberDeleteView.as_view(), name='barber_delete'),
+
+    path('register/', UserRegisterView.as_view(), name='register'),
+    path('login/', UserLoginView.as_view(), name='login'),
+    path('logout/', UserLogoutView.as_view(), name='logout'),
 
     path('client/', ClientListView.as_view(), name='client'),
     path('client/<int:pk>', ClientDetailView.as_view(), name='client_detail'),
@@ -37,9 +44,9 @@ urlpatterns = [
     path('appointment/<int:pk>/edit', AppointmentUpdateView.as_view(), name='appointment_update'),
     path('appointment/<int:pk>/delete', AppointmentDeleteView.as_view(), name='appointment_delete'),
 
-    path('payment/', PaymentListView.as_view(), name='service'),
+    path('payment/', PaymentListView.as_view(), name='payment'),
     path('payment/<int:pk>', PaymentDetailView.as_view(), name='payment_detail'),
-    path('paymentyment/create', PaymentCreateView.as_view(), name='payment_create'),
+    path('payment/create', PaymentCreateView.as_view(), name='payment_create'),
     path('payment/<int:pk>/edit', PaymentUpdateView.as_view(), name='payment_update'),
     path('payment/<int:pk>/delete', PaymentDeleteView.as_view(), name='payment_delete'),
 
